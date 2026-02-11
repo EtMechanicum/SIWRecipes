@@ -8,6 +8,7 @@ body {
 header {
 	display: flex;
 	flex-direction: column;
+	background-color: saddlebrown;
 }
 
 .container {
@@ -30,6 +31,7 @@ header {
 
 .logo img{
 	width: 50%;
+	border-radius: 30px 30px 0 0;
 }
 
 .search {

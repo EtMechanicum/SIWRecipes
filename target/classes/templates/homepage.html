@@ -4,6 +4,9 @@
 		<title>SIW Recipes</title>
 		<link rel="stylesheet" href="/css/navbar.css">
 		<link rel="stylesheet" href="/css/homepage.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
 	</head>
 	
 	<body>
@@ -12,8 +15,8 @@
 		<main>
 			<section class="rotd" th:if="${recipeOfTheDay}">
 				<img th:src="@{'/images/recipes/' + ${recipeOfTheDay.imageFileName}}" height="400px" width="320px" />
-				<div>
-					<p>Recipe of the day!</p>
+				<div class="info">
+					<p class="header">Recipe of the day!</p>
 					<p th:text="${recipeOfTheDay.title}">Recipe title</p>
 					<p th:text="|Recipe by ${recipeOfTheDay.author.name} ${recipeOfTheDay.author.surname}|">By</p>
 					<p th:text="${recipeOfTheDay.stars}">Stars</p>
