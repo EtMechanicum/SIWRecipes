@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SIW Recipes</title>
+		<link rel="stylesheet" href="/css/navbar.css">
+		<link rel="stylesheet" href="/css/homepage.css">
+	</head>
+	
+	<body>
+		<div th:replace="~{fragments/navbar :: navbar}"></div>
+		<hr>
+		<main>
+			<section class="rotd" th:if="${recipeOfTheDay}">
+				<img th:src="@{'/images/recipes/' + ${recipeOfTheDay.imageFileName}}" height="400px" width="320px" />
+				<div>
+					<p>Recipe of the day!</p>
+					<p th:text="${recipeOfTheDay.title}">Recipe title</p>
+					<p th:text="|Recipe by ${recipeOfTheDay.author.name} ${recipeOfTheDay.author.surname}|">By</p>
+					<p th:text="${recipeOfTheDay.stars}">Stars</p>
+				</div>
+				<hr>
+			</section>
+			<section class="newest" th:if="${newest}">
+				<p class="section-header">The most recent</p>		
+				<div class="container">
+					<div th:each="item : ${newest}" class="ciclo">						
+						<img th:src="@{'/images/recipes/' + ${item.imageFileName}}" height="260px" width="300px" />
+						<p th:text="${item.title}">Recipe title</p>
+					</div>
+				</div>
+			</section>
+			<section class="popular" th:if="${popular}">
+				<p class="section-header">The most popular</p>
+				<div class="container">	
+					<div class="ciclo" th:each="item : ${popular}">						
+						<img th:src="@{'/images/recipes/' + ${item.imageFileName}}" height="260px" width="300px" />
+						<p th:text="${item.title}">Recipe title</p>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>All ingredients</title>
+	</head>
+	
+	<body>
+		<h1>All our ingredients!</h1>
+		<main>
+			<section>
+				<div th:if="${#lists.isEmpty(list)}">No ingredients yet!</div>
+				<div th:if="${!#lists.isEmpty(list)}">
+					<div th:each="item : ${list}">
+						<span th:text="${item.name}">Ingredient name</span>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>
+	

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Admin home</title>
+		<link rel="stylesheet" href="/css/navbar.css">
+	</head>
+	
+	<body>
+		<div th:replace="~{fragments/navbar :: navbar}"></div>
+		<h1>Admin homepage</h1>
+		<h2>Add new ingredient: <span><a href="/ingredients/newIngredient">Go!</a></span></h2>
+		<h2>List of all the ingredients available: <span><a href="/ingredients/allIngredients">Go!</a></span></h2>
+		<h2>Add a new recipe: <span><a href="/recipes/new">New recipe</a></span></h2>
+		<h2>Categories: <span><a href="/admin/categories">Go!</a></span></h2>
+		<h2>Recipes list: <span><a href="/recipes/allRecipes">Go to all recipes</a></span></h2>
+		<h2>Users list and status: <span><a href="/admin/users">Users</a></span></h2>
+	</body>
+</html>

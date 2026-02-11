@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Registration yes!!</title>
+		<link rel="stylesheet" href="/css/navbar.css">
+	</head>
+	
+	<body>
+		<div th:replace="~{fragments/navbar :: navbar}"></div>	
+		<h1>CONGRATULATIONS, CHARLIE! YOU'RE A MEMBER NOW!</h1>
+		<div>
+			<span>Name: </span>
+			<span th:text="${newUser.name}"></span>
+		</div>
+		<div>
+			<span>Surname: </span>
+			<span th:text="${newUser.surname}"></span>
+		</div>
+		<div>
+			<span>Email: </span>
+			<span th:text="${newUser.email}"></span>
+		</div>
+	</body>
+</html>

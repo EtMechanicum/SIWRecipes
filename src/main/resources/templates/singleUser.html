@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>User profile</title>
+		<link rel="stylesheet" href="/css/navbar.css">
+		<link rel="stylesheet" href="/css/singleUser.css"> 
+	</head>
+	
+	<body>
+		<div th:replace="~{fragments/navbar :: navbar}"></div>
+		<div class="title">
+			<h1 th:text="${username}">Username</h1>
+			<form th:action="@{/admin/users/{id}/ban(id=${user.id})}" method="post">
+				<button style="background-color: red; color: aliceblue;">Ban</button>
+			</form>
+		</div>
+		<main>
+			<section class="user_data">
+				<span th:text="|Name: ${user.name}|">Name</span>
+				<span th:text="|Surname: ${user.surname}|">Surname</span>
+				<span th:text="|email: ${user.email}|">email</span>
+			</section>
+			<hr>
+			<section class="user_recipes">
+				<div th:if="${#lists.isEmpty(user.recipes)}">No recipes posted</div>
+				<div th:unless="${#lists.isEmpty(user.recipes)}">
+					<h2 th:text="|${username}'s recipes|"></h2>
+					<ul>
+						<li th:each="item : ${user.recipes}">
+							<a th:text="${item.title}" th:href="@{/recipes/{id}(id=${item.id})}">Recipe title</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<hr>
+			<section class="user_reviews">
+				<div th:if="${#lists.isEmpty(user.reviews)}">No reviews posted</div>
+				<div th:unless="${#lists.isEmpty(user.reviews)}">
+					<h2 th:text="|${username}'s reviews|"></h2>
+					<ul>
+						<li th:each="item : ${user.reviews}">
+							<p th:text="${item.title}">Review title</p>
+							<p th:text="${item.body}">Review body</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+			
+		</main>
+	</body>
+</html>

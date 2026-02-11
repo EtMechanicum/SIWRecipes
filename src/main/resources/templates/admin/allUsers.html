@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>User list</title>
+		<link rel="stylesheet" href="/css/navbar.css">
+	</head>
+	<body>
+		<div th:replace="~{fragments/navbar :: navbar}"></div>
+		<h1>User list</h1>
+		<main>
+			<section th:if="${users}">
+				<ul>
+					<li th:each="item : ${users}">
+						<a th:href="@{/admin/users/{id}(id=${item.user.id})}" th:text="${item.username}">Username</a>
+						<div th:text="|Status: ${item.enabled}|">Status</div>
+					</li>
+				</ul>
+			</section>
+			<h2 th:if="!${users}">No users registered</h2>
+		</main>
+	</body>
+</html>

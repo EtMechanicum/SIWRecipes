@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Edit review</title>
+	</head>
+		
+	<body>
+		<div th:replace="~{fragments/navbar :: navbar}"></div>
+		<h1>Review editor</h1>
+		<main>
+			<form th:action="@{/recipes/{id}/newReview(id=${newReview.recipe.id})}"
+					th:object="${newReview}" method="post">
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors}" th:text="${err}"></p>
+				</div>
+				<label> Title
+					<input type="text" required th:field="${newReview.title}">
+					<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+				</label>
+				<label> Review
+					<textarea th:field="${newReview.body}" rows="3">
+						Write down your review
+					</textarea>
+					<p th:if="${#fields.hasErrors}" th:errors="*{body}"></p>
+				</label>
+				<label>
+				    Stars:
+				    <span id="ratingValue"
+				          th:text="${newReview.rating != null ? newReview.rating : 2.5}">
+				        2.5
+				    </span>
+
+				    <input type="range"
+				           min="0"
+				           max="5"
+				           step="0.5"
+				           th:field="${newReview.rating}"
+				           oninput="document.getElementById('ratingValue').textContent = this.value">
+				</label>
+				<button>Post</button>
+			</form>
+		</main>
+	</body>
+</html>

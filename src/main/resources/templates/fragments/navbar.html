@@ -1,0 +1,53 @@
+<header th:fragment="navbar">
+	<div class="container">
+		<a class="logo" href="/"><img src="/images/example_logo.jpg"></a>
+		<form class="search" th:action="@{/search}" method="get">
+			<input type="text" name="query" required placeholder="Search...">
+			<button>search</button>
+		</form>
+		<div class="user">
+			<a th:if="${userDetails}" th:text="${userDetails.username}" th:href="@{/users/{username}(username=${userDetails.username})}">Username</a>
+			<a th:unless="${userDetails}" href="/register">Register</a>
+		</div>
+		<div class="login">
+			<form th:if="${userDetails}" th:action="@{/logout}" method="post">
+				<button type="submit">Logout</button>
+			</form>
+			<a th:unless="${userDetails}" href="/login">Login</a>
+		</div>
+	</div>
+	<nav class="menu">
+	  <ul>
+	    <li class="dropdown">
+	      <a href="#">Recipes</a>
+	      <ul class="dropdown-content">
+	       		<li><a th:href="@{/recipes/category/52}">Breakfast</a></li>
+	        	<li><a th:href="@{/recipes/category/{category_id}(category_id=2)}">Lunch</a></li>
+	       	 	<li><a th:href="@{/recipes/category/53}">Dinner</a></li>
+				<li><a th:href="@{/recipes/category/54}">Dessert</a></li>
+				<li><a th:href="@{/recipes/category/55}">Appetizers</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	  <ul>
+	  	  <li class="dropdown">
+	  	    <a href="#">Ingredients</a>
+	  	    <ul class="dropdown-content">
+	  	       <li><a href="#">Chicken</a></li>
+	  	       <li><a href="#">Pasta</a></li>
+	  	       	<li><a href="#">Beef</a></li>
+	  	     </ul>
+	  	   </li>
+	  </ul>	
+	  <ul>
+	    <li class="dropdown">
+	    	<a href="#">What to cook</a>
+	    	<ul class="dropdown-content">
+	    	    <li><a href="#">Fast cooking</a></li>
+	    	    <li><a href="#">Most popular</a></li>
+				<li><a href="/recipes/allRecipes">All recipes</a></li>
+	    	 </ul>
+	    </li>
+	   </ul>	
+	</nav>
+</header>	

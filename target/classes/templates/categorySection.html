@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Categories</title>
+	</head>
+	
+	<body>
+		<main>
+			<h1>Categories</h1>
+			<h2>Check all of our categories or create a new one</h2>
+			<!--Here the existent categories are shown-->
+			<h3>All the categories</h3>
+			<section>
+				<div th:if="${#lists.isEmpty(categories)}">No categories available</div>
+				<div th:if="${!#lists.isEmpty(categories)}">
+					<ul>
+						<li th:each="item : ${categories}">
+							<span th:text="${item.name}">Category name</span>
+						</li>
+					</ul>
+				</div>
+			</section>		
+			<!--Form for the creation of new categories-->
+			<h3>Create a new category</h3>
+			<section>
+				<form th:action="@{/admin/categories/save}" method="post" th:object="${newCategory}">
+					<label>
+						<input type="text" required th:field="${newCategory.name}">
+					</label>
+					<button>Create</button>
+				</form>
+			</section>
+		</main>
+		<a href="/">Back to home</a>
+	</body>
+</html>

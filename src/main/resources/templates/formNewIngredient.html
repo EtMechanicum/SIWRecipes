@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>New Ingredient</title>
+	</head>
+	
+	<body>
+		<h1>Hey admin, new ingredient details here!!</h1>
+		<section>
+			<form th:action="@{/ingredients/newIngredient}" method="post" th:object="${newIngredient}">
+				<div>
+					Ingredient name: <span><input required type="text" th:field="*{name}"></span>
+				</div>
+				<button>Submit</button>
+			</form>
+		</section>
+	</body>
+</html>
