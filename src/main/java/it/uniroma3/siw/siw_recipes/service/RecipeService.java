@@ -66,4 +66,8 @@ public class RecipeService {
     public Iterable<Recipe> getMostPopular() {
     	return rr.findTop3ByOrderByStarsDesc();
     }
+    
+    public Iterable<Recipe> getFastestToPrepare(int minutes) {
+    	return rr.findByPreparationTimeLessThanEqual(minutes);
+    }
 }

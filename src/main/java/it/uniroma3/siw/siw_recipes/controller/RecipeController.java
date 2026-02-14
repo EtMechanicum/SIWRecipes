@@ -74,117 +74,6 @@ public class RecipeController {
 		return "formNewRecipe";
 	}
 
-	/*
-	 * @PostMapping("/recipes/new") public String handleRecipe(
-	 * 
-	 * @ModelAttribute RecipeDTO newRecipe,
-	 * 
-	 * @RequestParam(required = false) String addIngredient, Model model ) {
-	 * 
-	 * // 👉 CASO 1: aggiungo ingrediente if (addIngredient != null) {
-	 * newRecipe.getIngredients().add(new IngredientDTO());
-	 * 
-	 * model.addAttribute("newRecipe", newRecipe);
-	 * model.addAttribute("allIngredients", is.getAllIngredients());
-	 * model.addAttribute("units", Unit.values());
-	 * model.addAttribute("difficulties", Difficulty.values());
-	 * model.addAttribute("categories", cs.getAllCategories());
-	 * 
-	 * return "formNewRecipe"; }
-	 * 
-	 * // 👉 CASO 2: salvo davvero Recipe recipe = new Recipe();
-	 * recipe.setTitle(newRecipe.getTitle());
-	 * recipe.setDescription(newRecipe.getDescription());
-	 * recipe.setPreparationTime(newRecipe.getPreparationTime());
-	 * recipe.setDifficulty(newRecipe.getDifficulty());
-	 * recipe.setCategory(cs.getCategoryById(newRecipe.getCategoryId()));
-	 * recipe.setCreatedAt(LocalDateTime.now()); UserDetails userDetails =
-	 * (UserDetails)
-	 * SecurityContextHolder.getContext().getAuthentication().getPrincipal(); User
-	 * user =
-	 * credServ.getCredentialsByUsername(userDetails.getUsername()).getUser();
-	 * recipe.setAuthor(user);
-	 * 
-	 * for (IngredientDTO ingDto : newRecipe.getIngredients()) { Ingredient
-	 * ingredient = is.getIngredientById(ingDto.getIngredientId());
-	 * 
-	 * IngredientInRecipe iir = new IngredientInRecipe(); iir.setRecipe(recipe);
-	 * iir.setIngredient(ingredient); iir.setQuantity(ingDto.getQuantity());
-	 * iir.setUnit(ingDto.getUnit());
-	 * 
-	 * recipe.getIngredients().add(iir); }
-	 * 
-	 * rs.saveRecipe(recipe); return "redirect:/recipes/allRecipes"; }
-	 */
-	/*
-	 * @PostMapping("/recipes/new") public String
-	 * saveRecipe(@ModelAttribute("newRecipe") Recipe recipe,
-	 * 
-	 * @RequestParam(required = false) String addIngredient, Model model) {
-	 * 
-	 * 
-	 * if (recipe.getId() != null) { // MODIFICA recipe =
-	 * rs.getRecipeById(dto.getId()); recipe.getIngredients().clear(); // importante
-	 * } else { // CREAZIONE recipe = new Recipe();
-	 * recipe.setCreatedAt(LocalDateTime.now()); } if (addIngredient != null) {
-	 * dto.getIngredients().add(new IngredientDTO());
-	 * 
-	 * model.addAttribute("newRecipe", dto); model.addAttribute("allIngredients",
-	 * is.getAllIngredients()); model.addAttribute("units", Unit.values());
-	 * model.addAttribute("difficulties", Difficulty.values());
-	 * model.addAttribute("categories", cs.getAllCategories());
-	 * 
-	 * return "formNewRecipe"; } recipe.setTitle(dto.getTitle());
-	 * recipe.setDescription(dto.getDescription());
-	 * recipe.setPreparationTime(dto.getPreparationTime());
-	 * recipe.setDifficulty(dto.getDifficulty());
-	 * recipe.setCategory(cs.getCategoryById(dto.getCategoryId()));
-	 * recipe.setImageFileName(dto.getImageFileName());
-	 * recipe.setCreatedAt(LocalDateTime.now()); UserDetails userDetails =
-	 * (UserDetails)
-	 * SecurityContextHolder.getContext().getAuthentication().getPrincipal(); User
-	 * user =
-	 * credServ.getCredentialsByUsername(userDetails.getUsername()).getUser();
-	 * recipe.setAuthor(user);
-	 * 
-	 * 
-	 * for (IngredientDTO ingDto : dto.getIngredients()) {
-	 * System.out.println(ingDto.toString()); IngredientInRecipe ingredient = new
-	 * IngredientInRecipe(); ingredient.setId(ingDto.getIngredientId());
-	 * ingredient.setRecipe(recipe); ingredient.setIngredient(ingDto.getName());
-	 * ingredient.setQuantity(ingDto.getQuantity());
-	 * ingredient.setUnit(ingDto.getUnit());
-	 * 
-	 * IngredientInRecipe iir = new IngredientInRecipe(); iir.setRecipe(recipe);
-	 * iir.setIngredient(ingredient); iir.setQuantity(ingDto.getQuantity());
-	 * iir.setUnit(ingDto.getUnit());
-	 * 
-	 * recipe.getIngredients().add(iir);
-	 * 
-	 * }
-	 * 
-	 * rs.saveRecipe(recipe); return "redirect:/recipes/" + recipe.getId();
-	 * }
-	 */
-	
-	/*
-	 * @PostMapping("/recipes/new") public String
-	 * handleRecipe(@ModelAttribute("newRecipe") Recipe newRecipe ,@RequestParam
-	 * (required = false) String addIngredient,
-	 * 
-	 * @RequestParam(required=false) String addStep, @RequestParam(required=false)
-	 * String addCategory ,Model model) { model.addAttribute("units",
-	 * Unit.values()); model.addAttribute("difficulties", Difficulty.values());
-	 * model.addAttribute("categories", cs.getAllCategories());
-	 * model.addAttribute("newRecipe", newRecipe);
-	 * 
-	 * if(addIngredient != null) { newRecipe.getIngredients().add(new
-	 * IngredientInRecipe()); model.addAttribute("newRecipe", newRecipe); return
-	 * "formNewRecipe"; } if(addStep != null) { newRecipe.getSteps().add(new
-	 * String()); return "formNewRecipe"; } if(addCategory != null) {
-	 * newRecipe.getCategories().add((long) 0); return "formNewRecipe"; } return
-	 * "formNewRecipe"; }
-	 */
 		
 		@PostMapping(value="/recipes/new/save", params="action=addIngredient")
 		public String addIngredient(
@@ -361,6 +250,13 @@ public class RecipeController {
 			recipes.add(ingredient.getRecipe());
 		}
 		model.addAttribute("recipes", recipes);
+		return "allRecipes";
+	}
+	
+	/*Ricette veloci*/
+	@GetMapping("/recipes/fastRecipes")
+	public String fastRecipes(Model model) {
+		model.addAttribute("recipes", rs.getFastestToPrepare(25));
 		return "allRecipes";
 	}
 	

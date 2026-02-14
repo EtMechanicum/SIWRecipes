@@ -16,6 +16,5 @@ public interface RecipeRepo extends CrudRepository<Recipe, Long>{
 	
 	public Iterable<Recipe> findTop3ByOrderByStarsDesc();
 	
-	
-
+	public Iterable<Recipe> findByPreparationTimeLessThanEqual(int minutes);
 }
