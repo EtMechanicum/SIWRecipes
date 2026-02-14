@@ -5,4 +5,5 @@ import it.uniroma3.siw.siw_recipes.model.ingredients.Ingredient;
 
 public interface IngredientRepo extends CrudRepository<Ingredient, Long> {
 	
+	public boolean existsByNameIgnoreCase(String name);
 }

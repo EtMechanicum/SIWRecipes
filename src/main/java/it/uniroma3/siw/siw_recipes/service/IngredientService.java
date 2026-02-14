@@ -23,4 +23,8 @@ public class IngredientService {
 	public Ingredient getIngredientById(Long id) {
 		return ir.findById(id).get();
 	}
+	
+	public boolean ingredientExistsByName(String name) {
+		return ir.existsByNameIgnoreCase(name);
+	}
 }

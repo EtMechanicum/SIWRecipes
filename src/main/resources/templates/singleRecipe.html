@@ -54,9 +54,10 @@
 		        Edit recipe
 		    </a>
 
-		    <form th:action="@{/recipes/{id}/delete(id=${recipe.id})}"
-		          method="post"
-		          sec:authorize="hasRole('ADMIN') or #idLoggedUser == #recipe.author.id">
+			<form th:action="@{/recipes/{id}/delete(id=${recipe.id})}"
+			      method="post"
+			      th:if="${#authorization.expression('hasAuthority(''ADMIN'')') 
+			             or idLoggedUser == recipe.author.id}">
 		        <button class="btn danger" type="submit">Delete recipe</button>
 		    </form>
 

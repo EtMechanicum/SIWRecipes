@@ -153,6 +153,24 @@ public class RecipeController {
 				newRecipe.setCategories(managedCategories);
 				/*Gestione ingredienti*/
 				
+				List<String> invalidIngredients =
+			            iirs.validateIngredients(newRecipe.getIngredients());
+
+			    if (!invalidIngredients.isEmpty()) {
+
+			        bindingResult.rejectValue(
+			            "ingredients",
+			            "invalid.ingredients",
+			            "Ingredienti non validi: " + invalidIngredients
+			        );
+			        
+			        model.addAttribute("units", Unit.values()); 
+					model.addAttribute("difficulties", Difficulty.values()); 
+					model.addAttribute("categories", cs.getAllCategories()); 
+					model.addAttribute("newRecipe", newRecipe); 
+					return "formNewRecipe"; 
+			    }
+				
 				for(IngredientInRecipe item : newRecipe.getIngredients()) {
 					item.getIngredient().toLowerCase(); //così ci assicuriamo che sono scritti tutti uguali
 					item.setRecipe(newRecipe);
@@ -175,10 +193,10 @@ public class RecipeController {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = credServ.getCredentialsByUsername(userDetails.getUsername()).getUser();
 		model.addAttribute("idLoggedUser", user.getId()); // this one is for the recipe
-		/*
-		 * System.out.println("Id utente loggato: " + user.getId());
-		 * System.out.println("Id autore della ricetta: " + recipe.getAuthor().getId());
-		 */
+		
+		  System.out.println("Id utente loggato: " + user.getId());
+		  System.out.println("Id autore della ricetta: " + recipe.getAuthor().getId());
+		 
 		return "singleRecipe";
 	}
 
