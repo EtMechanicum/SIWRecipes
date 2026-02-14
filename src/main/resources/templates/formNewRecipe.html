@@ -12,13 +12,13 @@
 		<hr>
 		<main>
 			<section>
-				<form th:action="@{/recipes/new}" th:object="${newRecipe}" method="post">
+				<form th:action="@{/recipes/new/save}" th:object="${newRecipe}" method="post">
 					<div th:if="${#fields.hasGlobalErrors}">
 						<p th:each="err : ${#fields.globalErrors}" th:text="${err}"></p>
 					</div>
 					<label> Recipe title
 						<input type="text" th:field="*{title}" placeholder="Titolo"/>
-						<p th:if="#fields.hasErrors('title')" th:errors="*{title}"></p>
+						<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
 					</label>
 					<label> Description
 						<textarea th:field="*{description}" placeholder="Pick up the tomatoes and smash..."></textarea>
@@ -32,7 +32,7 @@
 							<p th:if="${#fields.hasErrors('steps')}" th:errors="*{steps}"></p>
 						</label>
 					</div>			
-					<button type="submit" name="addStep">➕ Add Step</button>		
+					
 					<hr>
 				    <div th:each="i, stat : *{ingredients}">
 				    <!--Ingredients-->
@@ -43,8 +43,8 @@
 
 					<label> Quantity
 						<input type="number" th:field="*{ingredients[__${stat.index}__].quantity}" />
-						<p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></p>
-					</label>
+<!--						<p th:if="${#fields.hasErrors('${ingredients[__${stat.index}__].quantity}')}" th:errors="*{quantity}"></p>
+-->					</label>
 				        <select th:field="*{ingredients[__${stat.index}__].unit}">
 				            <option th:each="u : ${units}"
 				                    th:value="${u}"
@@ -52,7 +52,7 @@
 				            </option>
 				        </select>
 				    </div>
-					<button type="submit" name="addIngredient">➕ Add ingredient</button>
+
 					<hr>
 					<!--Categories-->
 					<div th:each="i,stat : *{categories}">
@@ -65,7 +65,7 @@
 							</select>
 						</label>
 					</div>					
-					<button type="submit" name="addCategory">➕ Add category</button>
+
 					<!--Complementary data-->
 					<label>Prepatation time in minutes
 						<input type="number" th:field="*{preparationTime}">
@@ -81,7 +81,10 @@
 						<input type="text" th:field="*{imageFileName}">
 						<p th:if="${#fields.hasErrors('imageFileName')}" th:errors="*{imageFileName}"></p>
 					</label>
-				    <button type="submit">Salva</button>
+					<button type="submit" name="action" value="addStep">➕ Add Step</button>
+					<button type="submit" name="action" value="addIngredient">➕ Add Ingredient</button>
+					<button type="submit" name="action" value="addCategory">➕ Add Category</button>
+					<button type="submit" name="action" value="save">Salva</button>
 				</form>
 			</section>
 

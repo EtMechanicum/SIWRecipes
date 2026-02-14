@@ -1,0 +1,110 @@
+/* =========================
+   BASE
+   ========================= */
+
+body {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    background-color: #fffaf5;
+    color: black;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: saddlebrown;
+    margin: 0;
+}
+
+/* =========================
+   PAGE LAYOUT
+   ========================= */
+
+.recipes-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+.recipes-page h1 {
+    font-size: 42px;
+    color: saddlebrown;
+    margin-bottom: 40px;
+    border-left: 8px solid orange;
+    padding-left: 16px;
+}
+
+/* =========================
+   EMPTY STATE
+   ========================= */
+
+.empty {
+    font-size: 22px;
+    text-align: center;
+    padding: 60px;
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   GRID RICETTE (HOMEPAGE STYLE)
+   ========================= */
+
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Card singola */
+.recipe-card {
+    background-color: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.2);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Titolo */
+.recipe-card h2 {
+    font-size: 22px;
+    color: saddlebrown;
+    padding: 16px;
+    margin: 0;
+    text-align: center;
+    border-top: 4px solid orange;
+}
+
+.recipe-card a {
+    text-decoration: none;
+}
+
+/* =========================
+   BACK HOME
+   ========================= */
+
+.back-home {
+    display: inline-block;
+    margin-top: 50px;
+    font-weight: bold;
+    color: saddlebrown;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.back-home:hover {
+    text-decoration: underline;
+}

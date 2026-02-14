@@ -11,22 +11,23 @@
 		<h1>THIS IS A REGISTRATION FORM</h1>
 		<section>
 			<form th:action="@{/register}" method="post">
-				<div th:if="${#fields.hasGlobalErrors()}">
-					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
-				</div>
+
 				<div>
 					Name: <span><input type="text" th:field="${newUser.name}"></span>
-					<p th:if="${#fields.hasErrors('name')}" th:errors="${newUser.name}"></p>
+					<span th:if="${#fields.hasErrors('newUser.name')}" th:errors="${newUser.name}" th:style="'color:red'"></span>
 					Surname: <span><input type="text" th:field="${newUser.surname}"></span>
-					<p th:if="${#fields.hasErrors('surname')}" th:errors="${newUser.surname}"></p>
+					<span th:if="${#fields.hasErrors('newUser.surname')}" th:errors="${newUser.surname}" th:style="'color:red'"></span>
 					Email: <span><input type="email" th:field="${newUser.email}"></span>
-					<p th:if="${#fields.hasErrors('email')}" th:errors="${newUser.email}"></p>
+					<span th:if="${#fields.hasErrors('newUser.email')}" th:errors="${newUser.email}" th:style="'color:red'"></span>
 				</div>
 				<div>
 					Username: <span><input type="text" th:field="${newCredentials.username}"></span>
-					<p th:if="${#fields.hasErrors('username')}" th:errors="${newCredentials.username}"></p>
+					<span th:if="${#fields.hasErrors('newCredentials.username')}" th:errors="${newCredentials.username}"
+						th:style="'color:red'">
+					</span>
 					Password: <span><input type="password" th:field="${newCredentials.password}"></span>
-					<p th:if="${#fields.hasErrors('password')}" th:errors="${newCredentials.password}"></p>
+					<span th:if="${#fields.hasErrors('newCredentials.password')}" th:errors="${newCredentials.password}"
+						th:style="'color:red'"></span>
 				</div>
 				<button>Register</button>
 			</form>

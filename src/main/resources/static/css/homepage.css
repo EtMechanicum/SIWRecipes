@@ -1,92 +1,133 @@
+/* =========================
+   BASE
+   ========================= */
+
+body {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    background-color: #fffaf5; /* white caldo */
+    color: black;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: saddlebrown;
+    margin: 0;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* =========================
+   SEZIONI
+   ========================= */
+
+section {
+    margin-bottom: 60px;
+}
+
+.section-header {
+    font-size: 32px;
+    font-weight: 600;
+    color: saddlebrown;
+    margin-bottom: 25px;
+    border-left: 6px solid orange;
+    padding-left: 15px;
+}
+
+/* =========================
+   RECIPE OF THE DAY
+   ========================= */
+
 .rotd {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	/*position: relative;*/
-	/*padding: 2rem;*/
-	/*clip-path: polygon(0 0, 100% 0, 100% 100%, 97% 100%, 97% 90%, 77% 90%, 77% 100%, 0 100%);*/
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    background: linear-gradient(135deg, white, #fff1e0);
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.rotd img {
+    border-radius: 14px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .rotd .info {
-	display: flex;
-	background-color: saddlebrown;
-	border-radius: 0 30px 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-/*.rotd .info > * {
-	flex-shrink: 1;
-	border: solid greenyellow;
-}*/
-
-.rotd img {
-	flex: 1.75;
-	/*padding: 2rem;*/
-	/*clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);*/
-	border: solid saddlebrown 5px;
-	border-radius: 30px 0 0 30px;
+.rotd .header {
+    font-size: 28px;
+    font-weight: 700;
+    color: orange;
 }
 
-.rotd div {
-	/*border: solid blueviolet;*/
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex: 1.25;
+.rotd .info p:nth-child(2) {
+    font-size: 26px;
+    font-weight: 600;
+    color: saddlebrown;
 }
 
-.header {
-	font-family: 'Cormorant Garamond';
-	font-size: large;
-	color: white;
+.rotd .info p {
+    font-size: 18px;
 }
 
+/* =========================
+   GRID RICETTE
+   ========================= */
 
-
-
-.newest {
-	/*border: solid orange;*/
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
 }
 
-.newest .container {
-	/*border: solid greenyellow;*/
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	width: 100%;
+/* Card singola */
+.ciclo {
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
 }
 
-/*.newest .container .ciclo {
-	border: solid red;
-}*/
-
-.popular {
-	/*border: solid orange;*/
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
+.ciclo:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
 }
 
-.popular .container {
-	/*border: solid greenyellow;*/
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	width: 100%;
+.ciclo img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-/*.popular .container .ciclo {
-	border: solid red;
-}*/
+.ciclo p {
+    padding: 15px;
+    font-size: 20px;
+    font-weight: 600;
+    color: saddlebrown;
+    text-align: center;
+}
 
-.section-header {
-	/*width: 100%;*/
-	background-color: saddlebrown;
-	align-self: flex-start;
-	border-radius: 0 30px 30px 0;
-	padding: 1%;
+/* =========================
+   SEZIONI SPECIFICHE
+   ========================= */
+
+.newest .ciclo p {
+    border-top: 4px solid orange;
+}
+
+.popular .ciclo p {
+    border-top: 4px solid saddlebrown;
 }

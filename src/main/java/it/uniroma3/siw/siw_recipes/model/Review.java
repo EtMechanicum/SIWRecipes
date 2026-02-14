@@ -10,10 +10,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
-import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+//import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+//import jakarta.validation.constraints.NotNull;
+//import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Review {
@@ -25,18 +27,16 @@ public class Review {
 	private String title;
 	@NotBlank
 	private String body;
-	@Positive
-	@Max(5)
-	private float rating;
+	@DecimalMin("0.5")
+	@DecimalMax("5.0")
+	private Float rating;
 	private LocalDateTime createdAt;
 	
 	@ManyToOne
 	@JoinColumn(name = "recipe_id")
-	@NotNull
 	private Recipe recipe;
 	
 	@ManyToOne
-	@NotNull
 	private User user;
 	
 
@@ -100,7 +100,7 @@ public class Review {
 		this.user = user;
 	}
 
-	public float getRating() {
+	public Float getRating() {
 		return rating;
 	}
 

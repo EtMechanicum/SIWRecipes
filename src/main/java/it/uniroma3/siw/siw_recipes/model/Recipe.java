@@ -5,18 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 import it.uniroma3.siw.siw_recipes.model.ingredients.IngredientInRecipe;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-//import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
 //import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+//import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 //import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -30,27 +36,36 @@ public class Recipe {
 	@NotBlank
 	private String title;
 	@NotBlank
-	@Size(min = 50)
+	@Size(min = 10)
 	private String description;
-	@NotEmpty
+	@ElementCollection
+	@CollectionTable(
+	    name = "recipe_steps",
+	    joinColumns = @JoinColumn(name = "recipe_id")
+	)
+	@Column(name = "step", length = 2000)
 	private List<String> steps = new ArrayList<>();
 	@OneToMany(
 		    mappedBy = "recipe",
 		    cascade = CascadeType.ALL,
 		    orphanRemoval = true
 		)
-	@NotEmpty
 	private List<IngredientInRecipe> ingredients = new ArrayList<>();
-	@NotNull
+	@Min(1)
 	private int preparationTime;
     @Enumerated(EnumType.STRING)
     @NotNull
 	private Difficulty difficulty;
     /*Questo tocca farlo diventare List<Categories> probabilmente*/
-    @NotEmpty
-    @Size(min = 1)
-	private List<Long> categories = new ArrayList<>();
-    @NotNull
+    
+    @ManyToMany
+    @JoinTable(
+        name = "recipe_category",
+        joinColumns = @JoinColumn(name = "recipe_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categories = new ArrayList<>();
+
 	private LocalDateTime createdAt;
 	
 	@ManyToOne
@@ -204,20 +219,20 @@ public class Recipe {
 		this.stars = stars;
 	}
 
-	public List<Long> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<Long> categories) {
-		this.categories = categories;
-	}
-
 	public boolean isRecipeOfTheDay() {
 		return recipeOfTheDay;
 	}
 
 	public void setRecipeOfTheDay(boolean recipeOfTheDay) {
 		this.recipeOfTheDay = recipeOfTheDay;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 }
 /*

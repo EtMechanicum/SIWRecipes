@@ -1,12 +1,14 @@
 package it.uniroma3.siw.siw_recipes.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -18,8 +20,8 @@ public class Category {
 	@NotBlank
 	private String name;
 	
-	@ManyToOne
-	private Recipe recipe;
+	@ManyToMany(mappedBy = "categories")
+	private List<Recipe> recipes = new ArrayList<>();
 	
 	public Category() {}
 	

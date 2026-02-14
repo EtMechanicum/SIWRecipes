@@ -2,24 +2,31 @@
 <html>
 	<head>
 		<title>Recipes</title>
+		<link rel="stylesheet" href="/css/navbar.css">
+		<link rel="stylesheet" href="/css/allRecipes.css">
 	</head>
 	
 	<body>
-		<h1>All our recipes</h1>
-		<main>
-			<section th:if="${#lists.isEmpty(recipes)}">
-				No recipes to show
+		<div th:replace="~{fragments/navbar :: navbar}"></div>
+		<hr>
+
+		<main class="recipes-page">
+			<h1>All our recipes</h1>
+
+			<section th:if="${#lists.isEmpty(recipes)}" class="empty">
+				No recipes to show 🍽️
 			</section>
 			
-			<section th:if="${!#lists.isEmpty(recipes)}">
-				<div th:each="item : ${recipes}">
-					<a th:href="@{/recipes/{id}(id=${item.id})}"><h2 th:text="${item.title}">Title</h2></a>
-					<p th:text="${item.description}">Description</p>
-					<div th:if="${#lists.isEmpty(item.ingredients)}">Lista vuota di ingredienti</div>
+			<section th:if="${!#lists.isEmpty(recipes)}" class="recipes-grid">
+				<div class="recipe-card" th:each="item : ${recipes}">
+					<img th:src="|/images/recipes/${item.imageFileName}|">
+					<a th:href="@{/recipes/{id}(id=${item.id})}">
+						<h2 th:text="${item.title}">Title</h2>
+					</a>
 				</div>
 			</section>
 			
-			<a href="/">Back to home</a>
+			<a class="back-home" href="/">← Back to home</a>
 		</main>
 	</body>
 </html>

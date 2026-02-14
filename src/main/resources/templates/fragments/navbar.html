@@ -21,11 +21,11 @@
 	    <li class="dropdown">
 	      <a href="#">Recipes</a>
 	      <ul class="dropdown-content">
-	       		<li><a th:href="@{/recipes/category/52}">Breakfast</a></li>
-	        	<li><a th:href="@{/recipes/category/{category_id}(category_id=2)}">Lunch</a></li>
-	       	 	<li><a th:href="@{/recipes/category/53}">Dinner</a></li>
-				<li><a th:href="@{/recipes/category/54}">Dessert</a></li>
-				<li><a th:href="@{/recipes/category/55}">Appetizers</a></li>
+	       		<li><a th:href="@{/recipes/category/{category_name}(category_name='Breakfast')}">Breakfast</a></li>
+	        	<li><a th:href="@{/recipes/category/{category_name}(category_name='Lunch')}">Lunch</a></li>
+	       	 	<li><a th:href="@{/recipes/category/{category_name}(category_name='Dinner')}">Dinner</a></li>
+				<li><a th:href="@{/recipes/category/{category_name}(category_name='Dessert')}">Dessert</a></li>
+				<li><a th:href="@{/recipes/category/{category_name}(category_name='Appetizers')}">Appetizers</a></li>
 	      </ul>
 	    </li>
 	  </ul>
@@ -33,9 +33,9 @@
 	  	  <li class="dropdown">
 	  	    <a href="#">Ingredients</a>
 	  	    <ul class="dropdown-content">
-	  	       <li><a href="#">Chicken</a></li>
-	  	       <li><a href="#">Pasta</a></li>
-	  	       	<li><a href="#">Beef</a></li>
+	  	       <li><a th:href="@{/recipes/ingredients/{ingredient_name}(ingredient_name='chicken')}">Chicken</a></li>
+	  	       <li><a th:href="@{/recipes/ingredients/{ingredient_name}(ingredient_name='pasta')}">Pasta</a></li>
+	  	       	<li><a th:href="@{/recipes/ingredients/{ingredient_name}(ingredient_name='beef')}">Beef</a></li>
 	  	     </ul>
 	  	   </li>
 	  </ul>	

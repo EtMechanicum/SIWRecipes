@@ -46,25 +46,34 @@
 					</ol>
 			</div>			
 		</section>
-		<a th:if="${idLoggedUser == recipe.author.id}" th:href="@{/recipes/{id}/edit(id=${recipe.id})}">Edit recipe</a>
-		<form th:action="@{/recipes/{id}/delete(id=${recipe.id})}"
-		      method="post"
-		      sec:authorize="
-		        hasRole('ADMIN') 
-		        or #idLoggedUser == #recipe.author.id">
-		    <button type="submit">Delete recipe</button>
-		</form>
-		<span th:text="|Is recipe of the day? ${recipe.recipeOfTheDay}|">ROTD</span>
-		<form th:action="@{/admin/recipes/{id}/recipeOfTheDay(id=${recipe.id})}" method="post"
-				sec:authorize="hasRole('ADMIN')">
-			<button>Upgrade to ROTD</button>	
-		</form>
+		<div class="recipe-actions">
+		    <a class="btn"
+		       th:if="${idLoggedUser == recipe.author.id}"
+		       th:href="@{/recipes/{id}/edit(id=${recipe.id})}">
+		        Edit recipe
+		    </a>
+
+		    <form th:action="@{/recipes/{id}/delete(id=${recipe.id})}"
+		          method="post"
+		          sec:authorize="hasRole('ADMIN') or #idLoggedUser == #recipe.author.id">
+		        <button class="btn danger" type="submit">Delete recipe</button>
+		    </form>
+
+		    <span class="rotd-flag"
+		          th:text="|Recipe of the day: ${recipe.recipeOfTheDay}|"></span>
+
+		    <form th:action="@{/admin/recipes/{id}/recipeOfTheDay(id=${recipe.id})}"
+		          method="post"
+		          sec:authorize="hasRole('ADMIN')">
+		        <button class="btn highlight">Upgrade to ROTD</button>
+		    </form>
+		</div>
+
 		<hr>
 		<!--Posted reviews-->
 		<div th:if="${#lists.isEmpty(recipe.reviews)}">No reviews yet</div>
-			<section th:if="${!#lists.isEmpty(recipe.reviews)}">
-				<div> 
-					<span>Reviews</span>
+		<section class="reviews" th:if="${!#lists.isEmpty(recipe.reviews)}">
+		    <h2>Reviews</h2>
 					<ul>
 						<li th:each="item : ${recipe.reviews}">
 							<span th:text="${item.title}">Title</span>
@@ -83,12 +92,13 @@
 				</div>
 			</section>
 		<!--Post a new review-->
-		<section>
-			<span>Post a review</span>
-			<form th:action="@{/recipes/{id}/newReview(id=${recipe.id})}"
-			      th:object="${newReview}"
-			      method="post">
-				  <div th:if="#fields.hasGlobalErrors()">
+		<section class="review-form">
+		    <h2>Post a review</h2>
+		    <form class="styled-form"
+		          th:action="@{/recipes/{id}/newReview(id=${recipe.id})}"
+		          th:object="${newReview}"
+		          method="post">
+				  <div th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors}" th:text="${err}"></p>
 				  </div>
 				  <input type="hidden" th:field="*{id}" th:value="0" />
@@ -100,7 +110,7 @@
 			        <textarea th:field="*{body}" rows="3">
 			            Write down your review
 			        </textarea>
-					<p th:if="#fields.hasErrors('body')" th:errors="*{body}"></p>
+					<p th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></p>
 			    </label>
 
 			    <label>
@@ -111,7 +121,7 @@
 			        </span>
 
 			        <input type="range"
-			               min="0"
+			               min="1"
 			               max="5"
 			               step="0.5"
 			               th:field="*{rating}"

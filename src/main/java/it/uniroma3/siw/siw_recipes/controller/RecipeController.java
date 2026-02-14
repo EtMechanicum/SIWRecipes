@@ -1,9 +1,10 @@
 package it.uniroma3.siw.siw_recipes.controller;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-//import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import it.uniroma3.siw.siw_recipes.model.Category;
+//import it.uniroma3.siw.siw_recipes.model.Category;
 //import it.uniroma3.siw.siw_recipes.dto.IngredientDTO;
 //import it.uniroma3.siw.siw_recipes.dto.RecipeDTO;
 //import it.uniroma3.siw.siw_recipes.dto.RecipeMapper;
@@ -43,9 +46,12 @@ public class RecipeController {
 	@Autowired
 	private CredentialsService credServ;
 	@Autowired
-	private ReviewService revServ;
-	@Autowired
+	private ReviewService revServ;	
+
+	
+	@Autowired 
 	private IIRService iirs;
+	 
 	// Questo eventualmente lo metterò in un altro controller.
 	// Per ora lo lascio qui
 	@GetMapping("/")
@@ -59,13 +65,12 @@ public class RecipeController {
 
 	@GetMapping("/recipes/new")
 	public String newRecipe(Model model) {
-
-		model.addAttribute("newRecipe", new Recipe());
+		Recipe newRecipe = new Recipe();
+		model.addAttribute("newRecipe", newRecipe);
 		// model.addAttribute("allIngredients", is.getAllIngredients());
 		model.addAttribute("units", Unit.values());
 		model.addAttribute("difficulties", Difficulty.values());
 		model.addAttribute("categories", cs.getAllCategories());
-
 		return "formNewRecipe";
 	}
 
@@ -162,46 +167,116 @@ public class RecipeController {
 	 * }
 	 */
 	
-	@PostMapping("/recipes/new") 
-	public String handleRecipe(@Valid @ModelAttribute("newRecipe") Recipe newRecipe, BindingResult bindingResult ,@RequestParam (required = false) String addIngredient,
-				@RequestParam(required=false) String addStep, @RequestParam(required=false) String addCategory ,Model model) {
-		if(addIngredient != null) {
+	/*
+	 * @PostMapping("/recipes/new") public String
+	 * handleRecipe(@ModelAttribute("newRecipe") Recipe newRecipe ,@RequestParam
+	 * (required = false) String addIngredient,
+	 * 
+	 * @RequestParam(required=false) String addStep, @RequestParam(required=false)
+	 * String addCategory ,Model model) { model.addAttribute("units",
+	 * Unit.values()); model.addAttribute("difficulties", Difficulty.values());
+	 * model.addAttribute("categories", cs.getAllCategories());
+	 * model.addAttribute("newRecipe", newRecipe);
+	 * 
+	 * if(addIngredient != null) { newRecipe.getIngredients().add(new
+	 * IngredientInRecipe()); model.addAttribute("newRecipe", newRecipe); return
+	 * "formNewRecipe"; } if(addStep != null) { newRecipe.getSteps().add(new
+	 * String()); return "formNewRecipe"; } if(addCategory != null) {
+	 * newRecipe.getCategories().add((long) 0); return "formNewRecipe"; } return
+	 * "formNewRecipe"; }
+	 */
+		
+		@PostMapping(value="/recipes/new/save", params="action=addIngredient")
+		public String addIngredient(
+		    @ModelAttribute("newRecipe") Recipe newRecipe,
+		    Model model
+		) {
 			newRecipe.getIngredients().add(new IngredientInRecipe());
+			model.addAttribute("newRecipe", newRecipe);
 			model.addAttribute("units", Unit.values());
 			model.addAttribute("difficulties", Difficulty.values());
 			model.addAttribute("categories", cs.getAllCategories());
 			return "formNewRecipe";
 		}
-		if(addStep != null) {
-			newRecipe.getSteps().add(new String());
+		
+		@PostMapping(value="/recipes/new/save", params="action=addStep")
+		public String addStep(
+		    @ModelAttribute("newRecipe") Recipe newRecipe,
+		    Model model
+		) {
+			newRecipe.getSteps().add("");
+			model.addAttribute("newRecipe", newRecipe);
 			model.addAttribute("units", Unit.values());
 			model.addAttribute("difficulties", Difficulty.values());
 			model.addAttribute("categories", cs.getAllCategories());
 			return "formNewRecipe";
 		}
-		if(addCategory != null) {
-			newRecipe.getCategories().add((long) 0);
+		
+		@PostMapping(value="/recipes/new/save", params="action=addCategory")
+		public String addCategory(
+		    @ModelAttribute("newRecipe") Recipe newRecipe,
+		    Model model
+		) {
+			newRecipe.getCategories().add(new Category());
+			model.addAttribute("newRecipe", newRecipe);
 			model.addAttribute("units", Unit.values());
 			model.addAttribute("difficulties", Difficulty.values());
 			model.addAttribute("categories", cs.getAllCategories());
 			return "formNewRecipe";
 		}
-		if(bindingResult.hasErrors()) {
-			return "formNewRecipe";
-		}
-		else {
-			newRecipe.setCreatedAt(LocalDateTime.now()); UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-			User user = credServ.getCredentialsByUsername(userDetails.getUsername()).getUser();
-			newRecipe.setAuthor(user);
-			rs.saveRecipe(newRecipe);
-			for(IngredientInRecipe item : newRecipe.getIngredients()) {
-				System.out.println(item.toString());
-				item.setRecipe(newRecipe);
-				iirs.saveIIR(item);
+
+
+		
+		@PostMapping(value="/recipes/new/save", params="action=save")
+		public String saveRecipe(
+		    @Valid @ModelAttribute("newRecipe") Recipe newRecipe,
+		    BindingResult bindingResult,
+		    Model model
+		) {
+			 // SOLO QUI VALIDAZIONE
+		    if(bindingResult.hasErrors()) {
+				model.addAttribute("units", Unit.values()); 
+				model.addAttribute("difficulties", Difficulty.values()); 
+				model.addAttribute("categories", cs.getAllCategories()); 
+				model.addAttribute("newRecipe", newRecipe); 
+				System.out.println(newRecipe.getId() + "Is recipe id null?" + 
+				"Lista ingredienti: " + newRecipe.getIngredients() + 
+				"Lista steps: " + newRecipe.getSteps() + 
+				"quantity del primo ingrediente: " + 
+				newRecipe.getIngredients().get(0).getQuantity() + 
+				"categoria id: " + newRecipe.getCategories().get(0)); 
+				return "formNewRecipe"; 
+			} 
+			else {
+				newRecipe.setCreatedAt(LocalDateTime.now()); 
+				UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().
+						getAuthentication().getPrincipal(); 
+				User user = credServ.getCredentialsByUsername(userDetails.getUsername()).getUser(); 
+				newRecipe.setAuthor(user);  
+				
+				/*Gestione categorie*/
+				List<Category> managedCategories = new ArrayList<>();
+
+				for (Category c : newRecipe.getCategories()) {
+				    Category managed = cs.getCategoryById(c.getId());
+				    managedCategories.add(managed);
+				}
+				newRecipe.setCategories(managedCategories);
+				/*Gestione ingredienti*/
+				
+				for(IngredientInRecipe item : newRecipe.getIngredients()) {
+					item.getIngredient().toLowerCase(); //così ci assicuriamo che sono scritti tutti uguali
+					item.setRecipe(newRecipe);
+				 }
+				  
+				//iirs.saveIIR(item); 
+				rs.saveRecipe(newRecipe);
 			}
-			return "redirect:/recipes/" + newRecipe.getId();
+			return "redirect:/recipes/" + newRecipe.getId(); 
 		}
-	}
+
+
+
 
 	@GetMapping("/recipes/{id}")
 	public String toSingleRecipe(@PathVariable Long id, Model model) {
@@ -226,9 +301,11 @@ public class RecipeController {
 
 	@PostMapping("/recipes/{id}/newReview")
 	public String saveReview(@PathVariable Long id, @Valid @ModelAttribute("newReview") Review review, 
-				BindingResult bindingResult) {
+				BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			return "redirect:/recipes/{id}";
+			Recipe recipe = rs.getRecipeById(id);
+	        model.addAttribute("recipe", recipe);
+			return "singleRecipe";
 		}
 		else {
 			Recipe recipe = rs.getRecipeById(id);
@@ -268,9 +345,22 @@ public class RecipeController {
 	}
 	
 	/*Per avere le ricette in base alla categoria*/
-	@GetMapping("/recipes/category/{category_id}")
-	public String getAllByCategory(@PathVariable("category_id") Long id, Model model) {
-		model.addAttribute("recipes", rs.getRecipesByCategory(id));
+	@GetMapping("/recipes/category/{category_name}")
+	public String getAllByCategory(@PathVariable String category_name, Model model) {
+		Category category = cs.getCategoryByName(category_name);
+		model.addAttribute("recipes", rs.getRecipesByCategory(category));
+		return "allRecipes";
+	}
+	
+	/*Ricette in base all'ingrediente*/
+	@GetMapping("/recipes/ingredients/{ingredient_name}")
+	public String getAllByIngredient(@PathVariable String ingredient_name, Model model) {
+		ArrayList<IngredientInRecipe> iir = iirs.getIngredientByName(ingredient_name); //tutti gli ingredienti con quel nome
+		ArrayList<Recipe> recipes = new ArrayList<>();
+		for(IngredientInRecipe ingredient : iir) {
+			recipes.add(ingredient.getRecipe());
+		}
+		model.addAttribute("recipes", recipes);
 		return "allRecipes";
 	}
 	
@@ -286,5 +376,6 @@ public class RecipeController {
 	    return "redirect:/recipes/" + id;
 	}
 
-
+	
+	
 }

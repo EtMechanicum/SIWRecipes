@@ -1,55 +1,301 @@
+/* =========================
+   BASE
+   ========================= */
 
-
-.chunk1 {
-	display: flex;
-	/*border: solid orangered;*/
-	justify-content: center;
+body {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    background-color: #fffaf5;
+    color: black;
 }
 
+hr {
+    border: none;
+    height: 1px;
+    background-color: saddlebrown;
+    margin: 30px 0;
+}
 
-.chunk1 div {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+/* =========================
+   CHUNK 1 – HERO
+   ========================= */
+
+.chunk1 {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    background: linear-gradient(135deg, white, #fff1e0);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.chunk1 h1 {
+    font-size: 42px;
+    color: saddlebrown;
+    margin-bottom: 10px;
+}
+
+.chunk1 p {
+    font-size: 18px;
+    margin: 6px 0;
 }
 
 .chunk1 img {
-	flex: 1.5;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
+
+/* =========================
+   CHUNK 2 – INFO + DESCRIZIONE
+   ========================= */
 
 .chunk2 {
-	display: flex;
-	justify-content: space-between;
+    max-width: 1100px;
+    margin: 40px auto;
+    display: flex;
+    gap: 40px;
 }
 
-
+.chunk2 .left,
 .chunk2 .right {
-	flex: 1.5;
+    background-color: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .chunk2 .left {
-	flex: 1;
+    width: 30%;
 }
+
+.chunk2 .left p {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.chunk2 .left a {
+    color: orange;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.chunk2 .left a:hover {
+    text-decoration: underline;
+}
+
+.chunk2 .right {
+    width: 70%;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* =========================
+   CHUNK 3 – INGREDIENTI / STEPS
+   ========================= */
 
 .chunk3 {
-	display: flex;
-	justify-content: space-between;
+    max-width: 1100px;
+    margin: 40px auto;
+    display: flex;
+    gap: 40px;
 }
 
+.chunk3 h2 {
+    color: saddlebrown;
+    font-size: 28px;
+    margin-bottom: 15px;
+    border-left: 6px solid orange;
+    padding-left: 12px;
+}
+
+.chunk3 .left,
 .chunk3 .right {
-	flex: 1.5;
+    width: 50%;
+    background-color: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-.chunk3 .left {
-	flex: 1;
+.chunk3 ul,
+.chunk3 ol {
+    padding-left: 20px;
 }
 
+.chunk3 li {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
 
+/* =========================
+   AZIONI RICETTA
+   ========================= */
 
+.recipe-actions {
+    max-width: 1100px;
+    margin: 40px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
 
+.btn {
+    background-color: saddlebrown;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
 
+.btn:hover {
+    background-color: orange;
+    color: black;
+}
 
+.btn.danger {
+    background-color: black;
+}
 
+.btn.highlight {
+    background-color: orange;
+    color: black;
+}
 
+.rotd-flag {
+    font-weight: bold;
+    color: saddlebrown;
+}
 
+/* =========================
+   REVIEWS
+   ========================= */
+
+.reviews {
+    max-width: 900px;
+    margin: 60px auto;
+}
+
+.reviews h2 {
+    font-size: 30px;
+    color: saddlebrown;
+    margin-bottom: 25px;
+    border-left: 6px solid orange;
+    padding-left: 12px;
+}
+
+.reviews ul {
+    list-style: none;
+    padding: 0;
+}
+
+.reviews li {
+    background-color: white;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.reviews li span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.reviews li div {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+/* =========================
+   FORM RECENSIONE
+   ========================= */
+
+.review-form {
+    max-width: 700px;
+    margin: 70px auto;
+}
+
+.review-form h2 {
+    font-size: 30px;
+    color: saddlebrown;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.styled-form {
+    background-color: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.styled-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.styled-form input[type="text"],
+.styled-form textarea {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid saddlebrown;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.styled-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.styled-form input:focus,
+.styled-form textarea:focus {
+    outline: none;
+    border-color: orange;
+    box-shadow: 0 0 6px orange;
+}
+
+/* Range stars */
+.styled-form input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#ratingValue {
+    font-weight: bold;
+    color: orange;
+    margin-left: 10px;
+}
+
+/* Submit */
+.styled-form button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    font-size: 18px;
+    background-color: saddlebrown;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.styled-form button:hover {
+    background-color: orange;
+    color: black;
+}

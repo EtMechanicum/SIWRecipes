@@ -1,5 +1,7 @@
 package it.uniroma3.siw.siw_recipes.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,9 @@ public class IIRService {
 	
 	public IngredientInRecipe GetIIRById(Long id) {
 		return iirRepo.findById(id).get();
+	}
+	
+	public ArrayList<IngredientInRecipe> getIngredientByName(String name) {
+		return iirRepo.findAllByIngredient(name);
 	}
 }

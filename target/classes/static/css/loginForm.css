@@ -1,0 +1,86 @@
+/* =========================
+   LOGIN PAGE ONLY
+   ========================= */
+
+.login-page {
+    background: linear-gradient(135deg, saddlebrown, orange);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Titolo */
+.login-page h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Form */
+.login-page form {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    width: 320px;
+}
+
+/* Righe */
+.login-page form > div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* Label */
+.login-page span:first-child {
+    font-weight: bold;
+    color: black;
+    margin-bottom: 6px;
+}
+
+/* Input */
+.login-page input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid saddlebrown;
+    font-size: 14px;
+}
+
+.login-page input:focus {
+    outline: none;
+    border-color: orange;
+    box-shadow: 0 0 6px orange;
+}
+
+/* Bottone */
+.login-page button {
+    background-color: saddlebrown;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-page button:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* Link registrazione */
+.login-page > div a {
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login-page > div a:hover {
+    text-decoration: underline;
+}
