@@ -1,0 +1,152 @@
+/* =========================
+   BASE
+   ========================= */
+
+body {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    background-color: #fffaf5;
+    color: black;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: saddlebrown;
+    margin: 0;
+}
+
+/* =========================
+   PAGE
+   ========================= */
+
+.categories-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+.categories-page h1 {
+    font-size: 40px;
+    color: saddlebrown;
+    margin-bottom: 10px;
+    border-left: 8px solid orange;
+    padding-left: 16px;
+}
+
+.categories-page h2 {
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.categories-page h3 {
+    font-size: 26px;
+    color: saddlebrown;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   CATEGORY LIST
+   ========================= */
+
+.categories-list {
+    margin-bottom: 60px;
+}
+
+.empty {
+    background-color: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    font-size: 18px;
+}
+
+.category-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.category-card {
+    background-color: white;
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    text-align: center;
+    font-weight: bold;
+    color: saddlebrown;
+    border-top: 4px solid orange;
+}
+
+/* =========================
+   FORM
+   ========================= */
+
+.new-category {
+    margin-bottom: 40px;
+}
+
+.styled-form {
+    max-width: 400px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.styled-form label {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.styled-form input {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid saddlebrown;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.styled-form input:focus {
+    outline: none;
+    border-color: orange;
+    box-shadow: 0 0 6px orange;
+}
+
+.styled-form button {
+    background-color: saddlebrown;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.styled-form button:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* =========================
+   BACK LINK
+   ========================= */
+
+.back-link {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    color: saddlebrown;
+}
+
+.back-link:hover {
+    color: orange;
+}

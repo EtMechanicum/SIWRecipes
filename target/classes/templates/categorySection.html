@@ -2,35 +2,49 @@
 <html>
 	<head>
 		<title>Categories</title>
+		<link rel="stylesheet" href="/css/navbar.css">
+		<link rel="stylesheet" href="/css/categories.css">
 	</head>
 	
 	<body>
-		<main>
+		<div th:replace="~{fragments/navbar :: navbar}"></div>
+		<hr>
+
+		<main class="categories-page">
 			<h1>Categories</h1>
 			<h2>Check all of our categories or create a new one</h2>
-			<!--Here the existent categories are shown-->
-			<h3>All the categories</h3>
-			<section>
-				<div th:if="${#lists.isEmpty(categories)}">No categories available</div>
+
+			<section class="categories-list">
+				<h3>All the categories</h3>
+
+				<div th:if="${#lists.isEmpty(categories)}" class="empty">
+					No categories available 📂
+				</div>
+
 				<div th:if="${!#lists.isEmpty(categories)}">
-					<ul>
-						<li th:each="item : ${categories}">
+					<ul class="category-grid">
+						<li class="category-card" th:each="item : ${categories}">
 							<span th:text="${item.name}">Category name</span>
 						</li>
 					</ul>
 				</div>
 			</section>		
-			<!--Form for the creation of new categories-->
-			<h3>Create a new category</h3>
-			<section>
-				<form th:action="@{/admin/categories/save}" method="post" th:object="${newCategory}">
+
+			<section class="new-category">
+				<h3>Create a new category</h3>
+				<form th:action="@{/admin/categories/save}"
+				      method="post"
+				      th:object="${newCategory}"
+				      class="styled-form">
 					<label>
+						Category name
 						<input type="text" required th:field="${newCategory.name}">
 					</label>
-					<button>Create</button>
+					<button type="submit">Create</button>
 				</form>
 			</section>
+
+			<a href="/" class="back-link">← Back to home</a>
 		</main>
-		<a href="/">Back to home</a>
 	</body>
 </html>

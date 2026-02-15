@@ -25,6 +25,7 @@ public class IngredientController {
 	@GetMapping("/ingredients/newIngredient")
 	public String formNewIngredient(Model model) {
 		model.addAttribute("newIngredient", new Ingredient());
+		model.addAttribute("list", is.getAllIngredients());
 		return "formNewIngredient";
 	}
 	

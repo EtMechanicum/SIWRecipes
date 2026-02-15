@@ -1,0 +1,130 @@
+/* =========================
+   BASE
+   ========================= */
+
+body {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    background-color: #fffaf5;
+    color: black;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: saddlebrown;
+    margin: 0;
+}
+
+/* =========================
+   PAGE LAYOUT
+   ========================= */
+
+.ingredients-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+.ingredients-page h1 {
+    font-size: 40px;
+    color: saddlebrown;
+    margin-bottom: 40px;
+    border-left: 8px solid orange;
+    padding-left: 16px;
+}
+
+.ingredients-page h2 {
+    font-size: 26px;
+    color: saddlebrown;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   NEW INGREDIENT FORM
+   ========================= */
+
+.new-ingredient {
+    margin-bottom: 60px;
+}
+
+.styled-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    max-width: 500px;
+}
+
+.styled-form label {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.styled-form input {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid saddlebrown;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.styled-form input:focus {
+    outline: none;
+    border-color: orange;
+    box-shadow: 0 0 6px orange;
+}
+
+.styled-form button {
+    background-color: saddlebrown;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.styled-form button:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* =========================
+   INGREDIENT LIST
+   ========================= */
+
+.ingredient-list {
+    margin-top: 40px;
+}
+
+.empty {
+    background-color: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    font-size: 18px;
+}
+
+/* Grid ingredienti */
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.ingredient-card {
+    background-color: white;
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    text-align: center;
+    font-weight: bold;
+    color: saddlebrown;
+    border-top: 4px solid orange;
+}

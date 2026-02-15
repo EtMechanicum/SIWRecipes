@@ -1,0 +1,79 @@
+/* =========================
+   BASE
+   ========================= */
+
+body {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    background-color: #fffaf5;
+    color: black;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: saddlebrown;
+    margin: 0;
+}
+
+/* =========================
+   PAGE LAYOUT
+   ========================= */
+
+.admin-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+.admin-page h1 {
+    font-size: 40px;
+    color: saddlebrown;
+    margin-bottom: 40px;
+    border-left: 8px solid orange;
+    padding-left: 16px;
+}
+
+/* =========================
+   ADMIN ACTIONS
+   ========================= */
+
+.admin-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* Card admin */
+.admin-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.admin-card h2 {
+    font-size: 22px;
+    color: saddlebrown;
+    margin-bottom: 15px;
+}
+
+/* Link */
+.admin-card a {
+    align-self: flex-start;
+    background-color: saddlebrown;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.admin-card a:hover {
+    background-color: orange;
+    color: black;
+}

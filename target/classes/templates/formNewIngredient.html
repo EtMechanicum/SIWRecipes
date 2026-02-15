@@ -1,19 +1,45 @@
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<title>New Ingredient</title>
+		<link rel="stylesheet" href="/css/navbar.css">
+		<link rel="stylesheet" href="/css/ingredients.css">
 	</head>
 	
 	<body>
-		<h1>Hey admin, new ingredient details here!!</h1>
-		<section>
-			<form th:action="@{/ingredients/newIngredient}" method="post" th:object="${newIngredient}">
-				<div>
-					Ingredient name: <span><input required type="text" th:field="*{name}"></span>
+		<div th:replace="~{fragments/navbar :: navbar}"></div>
+		<hr>
+
+		<main class="ingredients-page">
+			<h1>Ingredient management</h1>
+
+			<section class="new-ingredient">
+				<h2>Add new ingredient</h2>
+				<form th:action="@{/ingredients/newIngredient}"
+				      method="post"
+				      th:object="${newIngredient}"
+				      class="styled-form">
+					<label>
+						Ingredient name
+						<input required type="text" th:field="*{name}">
+					</label>
+					<button type="submit">Submit</button>
+				</form>
+			</section>
+			
+			<section class="ingredient-list">
+				<h2>Available ingredients</h2>
+
+				<div th:if="${#lists.isEmpty(list)}" class="empty">
+					No ingredients yet 🌱
 				</div>
-				<button>Submit</button>
-			</form>
-		</section>
+
+				<div th:if="${!#lists.isEmpty(list)}" class="ingredients-grid">
+					<div class="ingredient-card" th:each="item : ${list}">
+						<span th:text="${item.name}">Ingredient name</span>
+					</div>
+				</div>
+			</section>
+		</main>
 	</body>
 </html>

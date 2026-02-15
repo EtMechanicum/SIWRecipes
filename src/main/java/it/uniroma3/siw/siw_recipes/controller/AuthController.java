@@ -91,7 +91,7 @@ public class AuthController {
     	return "/admin/allUsers";
     }
     
-    @GetMapping("/users/{username}")
+    @GetMapping("/admin/users/{username}")
     public String userProfile(@PathVariable String username, Model model) {
     	User user = cs.getCredentialsByUsername(username).getUser();
     	model.addAttribute("user", user); //Posso accedere a reviews e a recipes dal form
