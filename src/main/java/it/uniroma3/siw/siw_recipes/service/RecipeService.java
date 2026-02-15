@@ -70,4 +70,8 @@ public class RecipeService {
     public Iterable<Recipe> getFastestToPrepare(int minutes) {
     	return rr.findByPreparationTimeLessThanEqual(minutes);
     }
+    
+    public Iterable<Recipe> searchByRecipeName(String name) {
+    	return rr.findByTitleContains(name);
+    }
 }

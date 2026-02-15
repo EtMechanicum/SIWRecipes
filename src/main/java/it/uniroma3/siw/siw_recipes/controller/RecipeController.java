@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.siw_recipes.model.Category;
 //import it.uniroma3.siw.siw_recipes.model.Category;
@@ -290,6 +291,10 @@ public class RecipeController {
 	    return "redirect:/recipes/" + id;
 	}
 
-	
+	@GetMapping("/search")
+	public String search(@RequestParam String query, Model model) {
+		model.addAttribute("recipes", rs.searchByRecipeName(query));
+		return "allRecipes";
+	}
 	
 }
