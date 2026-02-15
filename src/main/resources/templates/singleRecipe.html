@@ -69,7 +69,7 @@
 
 		    <form th:action="@{/admin/recipes/{id}/recipeOfTheDay(id=${recipe.id})}"
 		          method="post"
-		          sec:authorize="hasRole('ADMIN')">
+		          sec:authorize="hasAuthority('ADMIN')">
 		        <button class="btn highlight">Upgrade to ROTD</button>
 		    </form>
 		</div>
