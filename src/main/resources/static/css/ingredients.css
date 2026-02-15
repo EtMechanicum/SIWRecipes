@@ -1,6 +1,4 @@
-/* =========================
-   BASE
-   ========================= */
+
 
 body {
     margin: 0;
@@ -16,9 +14,6 @@ hr {
     margin: 0;
 }
 
-/* =========================
-   PAGE LAYOUT
-   ========================= */
 
 .ingredients-page {
     max-width: 900px;
@@ -40,9 +35,6 @@ hr {
     margin-bottom: 20px;
 }
 
-/* =========================
-   NEW INGREDIENT FORM
-   ========================= */
 
 .new-ingredient {
     margin-bottom: 60px;
@@ -95,9 +87,6 @@ hr {
     color: black;
 }
 
-/* =========================
-   INGREDIENT LIST
-   ========================= */
 
 .ingredient-list {
     margin-top: 40px;
@@ -111,7 +100,6 @@ hr {
     font-size: 18px;
 }
 
-/* Grid ingredienti */
 .ingredients-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

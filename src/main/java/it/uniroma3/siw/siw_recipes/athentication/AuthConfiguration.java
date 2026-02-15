@@ -52,9 +52,14 @@ public class AuthConfiguration {
             .csrf(withDefaults())
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(requests -> requests
-                .requestMatchers(HttpMethod.GET,
-                    "/", "/homepage", "/recipes/allRecipes","/register", "/css/**", "/images/**", "/favicon.ico"
-                ).permitAll()
+            		.requestMatchers(HttpMethod.GET,
+            		        "/", "/homepage",
+            		        "/recipes/**",
+            		        "/register",
+            		        "/css/**",
+            		        "/images/**",
+            		        "/favicon.ico"
+            		).permitAll()
                 .requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
                 .requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 .requestMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN_ROLE)

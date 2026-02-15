@@ -26,7 +26,6 @@
 			  <p>
 			    Rating: 
 			    <span th:each="i : ${#numbers.sequence(1, recipe.stars)}" style="color: gold">★</span>
-			    <span th:each="i : ${#numbers.sequence(1, 5 - recipe.stars)}" style="color:#ccc;">☆</span>
 			  </p>
 			  
 			  <p>Comments: <a href="/">Read the comments</a></p>
@@ -85,7 +84,6 @@
 							<p>
 							  Rating: 
 							  <span th:each="i : ${#numbers.sequence(1, recipe.stars)}" style="color: gold">★</span>
-							  <span th:each="i : ${#numbers.sequence(1, 5 - recipe.stars)}" style="color:#ccc;">☆</span>-->
 							</p>
 							<div th:text="${item.body}">Review</div>
 							<span th:text="|Posted by ${item.user.name} ${item.user.surname}|"></span>

@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -186,20 +187,25 @@ public class RecipeController {
 
 
 
-	@GetMapping("/recipes/{id}")
-	public String toSingleRecipe(@PathVariable Long id, Model model) {
-		Recipe recipe = rs.getRecipeById(id);
-		model.addAttribute("recipe", recipe);
-		model.addAttribute("newReview", new Review());
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = credServ.getCredentialsByUsername(userDetails.getUsername()).getUser();
-		model.addAttribute("idLoggedUser", user.getId()); // this one is for the recipe
-		
-		  System.out.println("Id utente loggato: " + user.getId());
-		  System.out.println("Id autore della ricetta: " + recipe.getAuthor().getId());
-		 
-		return "singleRecipe";
-	}
+		@GetMapping("/recipes/{id}")
+		public String toSingleRecipe(@PathVariable Long id,
+		                             Model model,
+		                             @AuthenticationPrincipal UserDetails userDetails) {
+
+		    Recipe recipe = rs.getRecipeById(id);
+		    model.addAttribute("recipe", recipe);
+		    model.addAttribute("newReview", new Review());
+
+		    if (userDetails != null) {
+		        User user = credServ
+		                .getCredentialsByUsername(userDetails.getUsername())
+		                .getUser();
+		        model.addAttribute("idLoggedUser", user.getId());
+		    }
+
+		    return "singleRecipe";
+		}
+
 
 	@GetMapping("/recipes/allRecipes")
 	public String allRecipes(Model model) {

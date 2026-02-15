@@ -1,6 +1,4 @@
-/* =========================
-   BASE
-   ========================= */
+
 
 body {
     margin: 0;
@@ -16,9 +14,6 @@ hr {
     margin: 0;
 }
 
-/* =========================
-   PAGE LAYOUT
-   ========================= */
 
 .admin-page {
     max-width: 900px;
@@ -34,9 +29,6 @@ hr {
     padding-left: 16px;
 }
 
-/* =========================
-   ADMIN ACTIONS
-   ========================= */
 
 .admin-actions {
     display: grid;
@@ -44,7 +36,7 @@ hr {
     gap: 25px;
 }
 
-/* Card admin */
+
 .admin-card {
     background-color: white;
     padding: 25px;
@@ -61,7 +53,7 @@ hr {
     margin-bottom: 15px;
 }
 
-/* Link */
+
 .admin-card a {
     align-self: flex-start;
     background-color: saddlebrown;

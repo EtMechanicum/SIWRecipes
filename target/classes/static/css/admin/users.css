@@ -1,6 +1,4 @@
-/* =========================
-   BASE
-   ========================= */
+
 
 body {
     margin: 0;
@@ -16,9 +14,6 @@ hr {
     margin: 0;
 }
 
-/* =========================
-   PAGE
-   ========================= */
 
 .users-page {
     max-width: 900px;
@@ -34,9 +29,7 @@ hr {
     padding-left: 16px;
 }
 
-/* =========================
-   USERS LIST
-   ========================= */
+
 
 .users-list ul {
     list-style: none;
@@ -81,9 +74,6 @@ hr {
     border: 2px solid saddlebrown;
 }
 
-/* =========================
-   EMPTY STATE
-   ========================= */
 
 .empty {
     background-color: white;

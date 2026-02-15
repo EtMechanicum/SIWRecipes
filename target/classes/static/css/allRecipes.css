@@ -1,6 +1,4 @@
-/* =========================
-   BASE
-   ========================= */
+
 
 body {
     margin: 0;
@@ -16,9 +14,6 @@ hr {
     margin: 0;
 }
 
-/* =========================
-   PAGE LAYOUT
-   ========================= */
 
 .recipes-page {
     max-width: 1200px;
@@ -34,9 +29,6 @@ hr {
     padding-left: 16px;
 }
 
-/* =========================
-   EMPTY STATE
-   ========================= */
 
 .empty {
     font-size: 22px;
@@ -47,9 +39,6 @@ hr {
     box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
-/* =========================
-   GRID RICETTE (HOMEPAGE STYLE)
-   ========================= */
 
 .recipes-grid {
     display: grid;
@@ -57,7 +46,7 @@ hr {
     gap: 30px;
 }
 
-/* Card singola */
+
 .recipe-card {
     background-color: white;
     border-radius: 18px;
@@ -78,7 +67,7 @@ hr {
     display: block;
 }
 
-/* Titolo */
+
 .recipe-card h2 {
     font-size: 22px;
     color: saddlebrown;
@@ -91,10 +80,6 @@ hr {
 .recipe-card a {
     text-decoration: none;
 }
-
-/* =========================
-   BACK HOME
-   ========================= */
 
 .back-home {
     display: inline-block;

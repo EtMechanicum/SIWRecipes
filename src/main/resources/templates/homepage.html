@@ -11,7 +11,7 @@
 		<hr>
 		<main>
 			<section class="rotd" th:if="${recipeOfTheDay}">
-				<img th:src="@{'/images/recipes/' + ${recipeOfTheDay.imageFileName}}" height="400px" width="320px" />
+				<a th:href="@{/recipes/{id}(id=${recipeOfTheDay.id})}"><img th:src="@{'/images/recipes/' + ${recipeOfTheDay.imageFileName}}" height="400px" width="320px" /></a>
 				<div class="info">
 					<p class="header">Recipe of the day!</p>
 					<p th:text="${recipeOfTheDay.title}">Recipe title</p>
@@ -22,18 +22,18 @@
 			</section>
 			<section class="newest" th:if="${newest}">
 				<p class="section-header">The most recent</p>		
-				<div class="container">
+				<div class="recipe-container">
 					<div th:each="item : ${newest}" class="ciclo">						
-						<img th:src="@{'/images/recipes/' + ${item.imageFileName}}" height="260px" width="300px" />
+						<a th:href="@{/recipes/{id}(id=${item.id})}"><img th:src="@{'/images/recipes/' + ${item.imageFileName}}" height="260px" width="300px" /></a>
 						<p th:text="${item.title}">Recipe title</p>
 					</div>
 				</div>
 			</section>
 			<section class="popular" th:if="${popular}">
 				<p class="section-header">The most popular</p>
-				<div class="container">	
+				<div class="recipe-container">	
 					<div class="ciclo" th:each="item : ${popular}">						
-						<img th:src="@{'/images/recipes/' + ${item.imageFileName}}" height="260px" width="300px" />
+						<a th:href="@{/recipes/{id}(id=${item.id})}"><img th:src="@{'/images/recipes/' + ${item.imageFileName}}" height="260px" width="300px" /></a>
 						<p th:text="${item.title}">Recipe title</p>
 					</div>
 				</div>

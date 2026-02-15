@@ -1,6 +1,4 @@
-/* =========================
-   BASE
-   ========================= */
+
 
 body {
     margin: 0;
@@ -16,9 +14,6 @@ hr {
     margin: 0;
 }
 
-/* =========================
-   PAGE
-   ========================= */
 
 .categories-page {
     max-width: 900px;
@@ -45,9 +40,6 @@ hr {
     margin-bottom: 20px;
 }
 
-/* =========================
-   CATEGORY LIST
-   ========================= */
 
 .categories-list {
     margin-bottom: 60px;
@@ -80,9 +72,6 @@ hr {
     border-top: 4px solid orange;
 }
 
-/* =========================
-   FORM
-   ========================= */
 
 .new-category {
     margin-bottom: 40px;
@@ -135,9 +124,6 @@ hr {
     color: black;
 }
 
-/* =========================
-   BACK LINK
-   ========================= */
 
 .back-link {
     display: inline-block;

@@ -1,6 +1,4 @@
-/* =========================
-   BODY
-   ========================= */
+
 
 body {
     margin: 0;
@@ -8,9 +6,6 @@ body {
     font-family: "Cormorant Garamond", serif;
 }
 
-/* =========================
-   HEADER
-   ========================= */
 
 header {
     display: flex;
@@ -18,9 +13,6 @@ header {
     background-color: saddlebrown;
 }
 
-/* =========================
-   TOP CONTAINER
-   ========================= */
 
 .container {
     flex: 2;
@@ -34,9 +26,6 @@ header {
     flex: 1;
 }
 
-/* =========================
-   LOGO
-   ========================= */
 
 .logo {
     display: flex;
@@ -48,9 +37,6 @@ header {
     border-radius: 16px 16px 0 0;
 }
 
-/* =========================
-   SEARCH
-   ========================= */
 
 .search {
     flex: 2;
@@ -74,9 +60,6 @@ header {
     cursor: pointer;
 }
 
-/* =========================
-   LOGIN AREA
-   ========================= */
 
 .login {
     display: flex;
@@ -97,9 +80,6 @@ header {
     cursor: pointer;
 }
 
-/* =========================
-   USER AREA
-   ========================= */
 
 .user {
     display: flex;
@@ -116,9 +96,6 @@ header {
     padding: 6px 14px;
 }
 
-/* =========================
-   NAV BAR
-   ========================= */
 
 nav {
     background-color: white;
@@ -137,9 +114,6 @@ nav a {
     font-weight: 600;
 }
 
-/* =========================
-   DROPDOWN
-   ========================= */
 
 .menu ul {
     list-style: none;

@@ -1,11 +1,9 @@
-/* =========================
-   BASE
-   ========================= */
+
 
 body {
     margin: 0;
     font-family: "Cormorant Garamond", serif;
-    background-color: #fffaf5; /* white caldo */
+    background-color: #fffaf5; 
     color: black;
 }
 
@@ -22,9 +20,6 @@ main {
     padding: 40px 20px;
 }
 
-/* =========================
-   SEZIONI
-   ========================= */
 
 section {
     margin-bottom: 60px;
@@ -39,9 +34,6 @@ section {
     padding-left: 15px;
 }
 
-/* =========================
-   RECIPE OF THE DAY
-   ========================= */
 
 .rotd {
     display: flex;
@@ -81,17 +73,14 @@ section {
     font-size: 18px;
 }
 
-/* =========================
-   GRID RICETTE
-   ========================= */
 
-.container {
+.recipe-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
 }
 
-/* Card singola */
+
 .ciclo {
     background-color: white;
     border-radius: 16px;
@@ -120,9 +109,6 @@ section {
     text-align: center;
 }
 
-/* =========================
-   SEZIONI SPECIFICHE
-   ========================= */
 
 .newest .ciclo p {
     border-top: 4px solid orange;

@@ -1,6 +1,4 @@
-/* =========================
-   WRAPPER PAGINA
-   ========================= */
+
 body {
 	margin: 0;
 }
@@ -11,18 +9,13 @@ body {
     font-family: "Cormorant Garamond", serif;
 }
 
-/* =========================
-   TITOLI
-   ========================= */
+
 
 .recipe-page h1 {
     color: saddlebrown;
     margin-top: 30px;
 }
 
-/* =========================
-   HR
-   ========================= */
 
 .recipe-page hr {
     border: none;
@@ -31,9 +24,6 @@ body {
     margin: 25px 0;
 }
 
-/* =========================
-   MAIN / SECTION
-   ========================= */
 
 .recipe-page main {
     margin-top: 20px;
@@ -46,9 +36,6 @@ body {
     box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
 
-/* =========================
-   FORM
-   ========================= */
 
 .recipe-form {
     display: flex;
@@ -56,9 +43,6 @@ body {
     gap: 18px;
 }
 
-/* =========================
-   LABEL
-   ========================= */
 
 .recipe-form label {
     display: flex;
@@ -68,9 +52,6 @@ body {
     color: saddlebrown;
 }
 
-/* =========================
-   INPUT BASE
-   ========================= */
 
 .recipe-form input,
 .recipe-form textarea,
@@ -82,14 +63,14 @@ body {
     background: white;
 }
 
-/* Textarea più comoda */
+
 
 .recipe-form textarea {
     resize: vertical;
     min-height: 80px;
 }
 
-/* Focus */
+
 
 .recipe-form input:focus,
 .recipe-form textarea:focus,
@@ -98,9 +79,6 @@ body {
     border-color: orange;
 }
 
-/* =========================
-   ERRORI
-   ========================= */
 
 .recipe-form p {
     margin: 0;
@@ -108,9 +86,6 @@ body {
     color: orange;
 }
 
-/* =========================
-   GRUPPI DINAMICI
-   ========================= */
 
 .recipe-form .steps-group,
 .recipe-form .ingredients-group,
@@ -120,9 +95,6 @@ body {
     border-radius: 12px;
 }
 
-/* =========================
-   BOTTONI
-   ========================= */
 
 .recipe-form button {
     background-color: orange;
@@ -135,13 +107,11 @@ body {
     color: black;
 }
 
-/* Hover semplice */
 
 .recipe-form button:hover {
     opacity: 0.9;
 }
 
-/* Bottone salva diverso */
 
 .recipe-form button[value="save"] {
     background-color: saddlebrown;
