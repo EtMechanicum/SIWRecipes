@@ -19,6 +19,9 @@
 		            <span>Password:</span>
 		            <span><input name="password" type="password" required /></span>
 		        </div>
+				<div>
+					<span th:if="${param.error != null}">Username o password errati</span>
+				</div>
 		        <div>
 		            <span><button type="submit">Login</button></span>
 		        </div>

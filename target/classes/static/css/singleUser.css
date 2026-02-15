@@ -1,45 +1,185 @@
+/* =========================
+   BASE
+   ========================= */
+
+body {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    background-color: #fffaf5;
+    color: black;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: saddlebrown;
+    margin: 40px 0;
+}
+
+/* =========================
+   TITLE / HEADER USER
+   ========================= */
+
 .title {
-	border: solid orange;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	background-color: orange;
-	border-radius: 30px 0 30px 0;
+    max-width: 1000px;
+    margin: 40px auto 0 auto;
+    padding: 25px 30px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, white, #fff1e0);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/*.title > * {
-	border: solid greenyellow;
-}*/
-
-.title form {
-	display: flex;
-	align-items: center;
+.title h1 {
+    margin: 0;
+    font-size: 34px;
+    color: orange;
+    font-weight: 700;
 }
+
+.title button {
+    background-color: orange;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.title button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   SEZIONI GENERALI
+   ========================= */
+
+section {
+    margin-bottom: 50px;
+}
+
+/* Header sezione stile coerente */
+section h2 {
+    font-size: 28px;
+    color: saddlebrown;
+    border-left: 6px solid orange;
+    padding-left: 14px;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   USER DATA
+   ========================= */
 
 .user_data {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
-.user_data > * {
-	display: flex;
-	border: solid purple;
-	width: 30%;
-	justify-content: center;
-	margin: 1% 0 1% 0;
-	background-color: purple;
-	border-radius: 30px 0 30px 0;
-	color: white;
+.user_data span {
+    font-size: 20px;
+    color: saddlebrown;
+    font-weight: 600;
 }
 
-.user_recipes {
-	display: flex;
-	justify-content: center;
+/* =========================
+   LINK SCRIVI RICETTA
+   ========================= */
+
+.user_recipes > a {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 18px;
+    background-color: orange;
+    color: black;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.user_reviews {
-	display: flex;
-	justify-content: center;
+.user_recipes > a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   LISTE (RICETTE + REVIEWS)
+   ========================= */
+
+.user_recipes ul,
+.user_reviews ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user_recipes li,
+.user_reviews li {
+    background: white;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   LINK RICETTE
+   ========================= */
+
+.user_recipes li a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: saddlebrown;
+}
+
+.user_recipes li a:hover {
+    color: orange;
+}
+
+/* =========================
+   REVIEWS
+   ========================= */
+
+.user_reviews li p:first-child {
+    font-size: 20px;
+    font-weight: 700;
+    color: saddlebrown;
+    margin-bottom: 6px;
+}
+
+.user_reviews li p:last-child {
+    font-size: 18px;
+}
+
+/* =========================
+   MESSAGGI VUOTI
+   ========================= */
+
+.user_recipes div,
+.user_reviews div {
+    font-size: 18px;
+    color: saddlebrown;
+    font-weight: 600;
 }

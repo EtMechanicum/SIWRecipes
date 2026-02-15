@@ -5,91 +5,119 @@
 	    <meta charset="UTF-8">
 	    <title>Nuova Ricetta</title>
 		<link rel="stylesheet" href="/css/navbar.css">
+		<link rel="stylesheet" href="/css/formNewRecipe.css">
 	</head>
+	
 	<body>
-		<h1>Crea nuova ricetta</h1>
+
 		<div th:replace="~{fragments/navbar :: navbar}"></div>
-		<hr>
-		<main>
-			<section>
-				<form th:action="@{/recipes/new/save}" th:object="${newRecipe}" method="post">
-					<div th:if="${#fields.hasGlobalErrors}">
-						<p th:each="err : ${#fields.globalErrors}" th:text="${err}"></p>
-					</div>
-					<label> Recipe title
-						<input type="text" th:field="*{title}" placeholder="Titolo"/>
-						<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
-					</label>
-					<label> Description
-						<textarea th:field="*{description}" placeholder="Pick up the tomatoes and smash..."></textarea>
-						<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
-					</label>
-					<hr>
-					<!--Steps-->
-					<div th:each="i, stat: *{steps}">
-						<label> Steps
-							<textarea th:field="*{steps[__${stat.index}__]}" placeholder="Put the eggs in the..." rows="5"></textarea>
-							<p th:if="${#fields.hasErrors('steps')}" th:errors="*{steps}"></p>
+
+		<div class="recipe-page">
+
+			<hr>
+
+			<main>
+				<h1>Crea nuova ricetta</h1>
+
+				<section class="recipe-form-section">
+					<form class="recipe-form"
+					      th:action="@{/recipes/new/save}"
+					      th:object="${newRecipe}"
+					      method="post">
+
+						<div th:if="${#fields.hasGlobalErrors}">
+							<p th:each="err : ${#fields.globalErrors}" th:text="${err}"></p>
+						</div>
+
+						<label> Recipe title
+							<input type="text" th:field="*{title}" placeholder="Titolo"/>
+							<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
 						</label>
-					</div>			
-					
-					<hr>
-				    <div th:each="i, stat : *{ingredients}">
-				    <!--Ingredients-->
-					<label> Ingredient
-						<input type="text" th:field="*{ingredients[__${stat.index}__].ingredient}"/>
-						<p th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}"></p>
-					</label>
 
-					<label> Quantity
-						<input type="number" th:field="*{ingredients[__${stat.index}__].quantity}" />
-<!--						<p th:if="${#fields.hasErrors('${ingredients[__${stat.index}__].quantity}')}" th:errors="*{quantity}"></p>
--->					</label>
-				        <select th:field="*{ingredients[__${stat.index}__].unit}">
-				            <option th:each="u : ${units}"
-				                    th:value="${u}"
-				                    th:text="${u}">
-				            </option>
-				        </select>
-				    </div>
+						<label> Description
+							<textarea th:field="*{description}" placeholder="Pick up the tomatoes and smash..."></textarea>
+							<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+						</label>
 
-					<hr>
-					<!--Categories-->
-					<div th:each="i,stat : *{categories}">
-						<label> Select categories
-							<select th:field="*{categories[__${stat.index}__]}">
-								<option th:each="c : ${categories}"
-										th:value="${c.id}"
-										th:text="${c.name}">
+						<hr>
+
+						<!-- Steps -->
+						<div class="steps-group" th:each="i, stat: *{steps}">
+							<label> Steps
+								<textarea th:field="*{steps[__${stat.index}__]}"
+								          placeholder="Put the eggs in the..."
+								          rows="5"></textarea>
+								<p th:if="${#fields.hasErrors('steps')}" th:errors="*{steps}"></p>
+							</label>
+						</div>
+
+						<hr>
+
+						<!-- Ingredients -->
+						<div class="ingredients-group" th:each="i, stat : *{ingredients}">
+
+							<label> Ingredient
+								<input type="text" th:field="*{ingredients[__${stat.index}__].ingredient}"/>
+								<p th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}"></p>
+							</label>
+
+							<label> Quantity
+								<input type="number" th:field="*{ingredients[__${stat.index}__].quantity}" />
+							</label>
+
+							<select th:field="*{ingredients[__${stat.index}__].unit}">
+								<option th:each="u : ${units}"
+								        th:value="${u}"
+								        th:text="${u}">
+								</option>
+							</select>
+						</div>
+
+						<hr>
+
+						<!-- Categories -->
+						<div class="categories-group" th:each="i,stat : *{categories}">
+							<label> Select categories
+								<select th:field="*{categories[__${stat.index}__]}">
+									<option th:each="c : ${categories}"
+									        th:value="${c.id}"
+									        th:text="${c.name}">
+									</option>
+								</select>
+							</label>
+						</div>
+
+						<!-- Complementary data -->
+						<label> Preparation time in minutes
+							<input type="number" th:field="*{preparationTime}">
+							<p th:if="${#fields.hasErrors('preparationTime')}" th:errors="*{preparationTime}"></p>
+						</label>
+
+						<label> Select difficulty 
+							<select th:field="*{difficulty}">
+								<option th:each="d : ${d}"
+								        th:value="${d}"
+								        th:text="${d}">
 								</option>
 							</select>
 						</label>
-					</div>					
 
-					<!--Complementary data-->
-					<label>Prepatation time in minutes
-						<input type="number" th:field="*{preparationTime}">
-						<p th:if="${#fields.hasErrors('preparationTime')}" th:errors="*{preparationTime}"></p>
-					</label>
-					<label> Select difficulty 
-						<select th:field="*{difficulty}">
-							<option th:each="d : ${difficulties}" th:value="${d}" th:text="${d}">Select difficulty</option>
-							<p th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}"></p>
-						</select>
-					</label>
-					<label> Image file name
-						<input type="text" th:field="*{imageFileName}">
-						<p th:if="${#fields.hasErrors('imageFileName')}" th:errors="*{imageFileName}"></p>
-					</label>
-					<button type="submit" name="action" value="addStep">➕ Add Step</button>
-					<button type="submit" name="action" value="addIngredient">➕ Add Ingredient</button>
-					<button type="submit" name="action" value="addCategory">➕ Add Category</button>
-					<button type="submit" name="action" value="save">Salva</button>
-				</form>
-			</section>
+						<label> Image file name
+							<input type="text" th:field="*{imageFileName}">
+							<p th:if="${#fields.hasErrors('imageFileName')}" th:errors="*{imageFileName}"></p>
+						</label>
 
-		</main>
-	
-	
+						<button type="submit" name="action" value="addStep">➕ Add Step</button>
+						<button type="submit" name="action" value="addIngredient">➕ Add Ingredient</button>
+						<button type="submit" name="action" value="addCategory">➕ Add Category</button>
+						<button type="submit" name="action" value="save">Salva</button>
+
+					</form>
+				</section>
+
+			</main>
+
+		</div>
+
 	</body>
 </html>

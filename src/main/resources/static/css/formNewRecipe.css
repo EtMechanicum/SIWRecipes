@@ -1,0 +1,149 @@
+/* =========================
+   WRAPPER PAGINA
+   ========================= */
+body {
+	margin: 0;
+}
+
+.recipe-page {
+    margin: 0 10% 0 10%;
+    background-color: #fffaf5;
+    font-family: "Cormorant Garamond", serif;
+}
+
+/* =========================
+   TITOLI
+   ========================= */
+
+.recipe-page h1 {
+    color: saddlebrown;
+    margin-top: 30px;
+}
+
+/* =========================
+   HR
+   ========================= */
+
+.recipe-page hr {
+    border: none;
+    height: 1px;
+    background-color: saddlebrown;
+    margin: 25px 0;
+}
+
+/* =========================
+   MAIN / SECTION
+   ========================= */
+
+.recipe-page main {
+    margin-top: 20px;
+}
+
+.recipe-page section {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   FORM
+   ========================= */
+
+.recipe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* =========================
+   LABEL
+   ========================= */
+
+.recipe-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: 600;
+    color: saddlebrown;
+}
+
+/* =========================
+   INPUT BASE
+   ========================= */
+
+.recipe-form input,
+.recipe-form textarea,
+.recipe-form select {
+    font-family: inherit;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    background: white;
+}
+
+/* Textarea più comoda */
+
+.recipe-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Focus */
+
+.recipe-form input:focus,
+.recipe-form textarea:focus,
+.recipe-form select:focus {
+    outline: none;
+    border-color: orange;
+}
+
+/* =========================
+   ERRORI
+   ========================= */
+
+.recipe-form p {
+    margin: 0;
+    font-size: 14px;
+    color: orange;
+}
+
+/* =========================
+   GRUPPI DINAMICI
+   ========================= */
+
+.recipe-form .steps-group,
+.recipe-form .ingredients-group,
+.recipe-form .categories-group {
+    background: #fff1e0;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+/* =========================
+   BOTTONI
+   ========================= */
+
+.recipe-form button {
+    background-color: orange;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Hover semplice */
+
+.recipe-form button:hover {
+    opacity: 0.9;
+}
+
+/* Bottone salva diverso */
+
+.recipe-form button[value="save"] {
+    background-color: saddlebrown;
+    color: white;
+}

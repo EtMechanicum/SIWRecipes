@@ -11,10 +11,13 @@
 		<div class="title">
 			<h1 th:text="${username}">Username</h1>
 			<form th:action="@{/admin/users/{id}/ban(id=${user.id})}" method="post">
-				<button style="background-color: red; color: aliceblue;">Ban</button>
+				<button>Ban</button>
 			</form>
 		</div>
 		<main>
+			<section sec:>
+				
+			</section>
 			<section class="user_data">
 				<span th:text="|Name: ${user.name}|">Name</span>
 				<span th:text="|Surname: ${user.surname}|">Surname</span>
